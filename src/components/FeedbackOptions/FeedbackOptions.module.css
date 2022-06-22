@@ -1,0 +1,21 @@
+.list {
+    display: flex;
+    justify-content: center;
+}
+
+.item:not(:last-child) {
+    margin-right: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #6096ba;
+    color: #ffffff;
+    transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
+}
+
+.button:hover {
+    background-color: #6096badc;
+}

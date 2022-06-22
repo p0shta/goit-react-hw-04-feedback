@@ -1,0 +1,12 @@
+.item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.item {
+    color: #274c77;
+    font-size: 18px;
+}
+
+.value {
+    font-weight: 700;
+}

@@ -9,17 +9,15 @@ export function App() {
     const [neutral, setNeutral] = useState(0);
     const [bad, setBad] = useState(0);
     const [total, setTotal] = useState(0);
+    const [positivePercentage, setPositivePercentage] = useState(0);
 
     useEffect(() => {
         setTotal([good, neutral, bad].reduce((acc, value) => acc + value, 0));
     }, [good, neutral, bad]);
 
-    const positivePercentage = () => {
-        const positiveFeedbacks = good;
-        const positivePercentage = (positiveFeedbacks / total) * 100;
-
-        return Math.round(positivePercentage);
-    };
+    useEffect(() => {
+        setPositivePercentage(Math.round((good / total) * 100));
+    }, [good, total]);
 
     const onLeaveFeedback = feedback => {
         switch (feedback) {
@@ -44,7 +42,7 @@ export function App() {
         <div>
             <Section title="Please leave feedback">
                 <FeedbackOptions
-                    options={['good', 'neutral', 'bad']}
+                    options={Object.keys({ good, neutral, bad })}
                     onLeaveFeedback={onLeaveFeedback}
                 />
             </Section>
@@ -55,7 +53,7 @@ export function App() {
                         neutral={neutral}
                         bad={bad}
                         total={total}
-                        positivePercentage={positivePercentage()}
+                        positivePercentage={positivePercentage}
                     />
                 ) : (
                     <Notification message="There is no feedback" />
